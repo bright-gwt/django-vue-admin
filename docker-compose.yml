@@ -1,14 +1,15 @@
-version: "3"
+version: "3.9"
 services:
   backend:
-    build: ./server
+    build: backend
     ports:
       - "8000:80"
     environment:
       # 生产的话把DJANGO_ENV这个环境变量删了 执行docker-compose build backend 重新构建下镜像
       - DJANGO_ENV=dev
     volumes:
-      - ./server:/code
+      - ./backend:/code
+    working_dir: /code
     links:
       - redis
   frontend:
